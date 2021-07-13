@@ -1,0 +1,9 @@
+[Core]
+Name = Apod
+Module = apod
+
+[Documentation]
+Description = Astronomy Picture Of the Day
+
+[Python]
+Version = 3
