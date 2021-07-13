@@ -2,16 +2,25 @@
 import urllib.request
 import json
 import secrets
+from datetime import date
 from errbot import BotPlugin, botcmd, arg_botcmd, re_botcmd
 import requests
-from datetime import date
 
 
 class Apod(BotPlugin):
     """Astronomy Picture Of the Day"""
 
-    @arg_botcmd('-r', dest='random', type=bool, default=False)
-    def apod(self, msg, random=False):
+    @botcmd
+    def apod(self, msg, args):
+        """Astronomy Picture Of the Day"""
+        self.apod_send(msg, random=False)
+
+    @botcmd
+    def apod_random(self, msg, args):
+        """Random Astronomy Picture Of the Day"""
+        self.apod_send(msg, random=True)
+
+    def apod_send(self, msg, random):
         """Astronomy Picture Of the Day"""
         current_date = date.today()
         if random:
