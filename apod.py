@@ -42,5 +42,5 @@ class Apod(BotPlugin):
             file.write(image_bytes)
             file.close()
             self.send_stream_request(msg.frm, open('tmp.gif', 'rb'), name='image.gif', stream_type='image/gif')
-            return response['description']
+            return response['description']+' - '+year+'-'+month+'-'+day
         return 'No image for:'+year+'-'+month+'-'+day
