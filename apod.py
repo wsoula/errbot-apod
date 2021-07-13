@@ -1,6 +1,7 @@
 """Astronomy Picture Of the Day"""
 import urllib.request
 import json
+import secrets
 from errbot import BotPlugin, botcmd, arg_botcmd, re_botcmd
 import requests
 
@@ -11,7 +12,11 @@ class Apod(BotPlugin):
     @botcmd
     def apod(self, msg, args):
         """Astronomy Picture Of the Day"""
-        url = 'http://apod.heroku.com/api'
+        year = str(secrets.choice(range(2000, 2021)))
+        month = str(secrets.choice(range(1, 13)))
+        day = str(secrets.choice(range(1, 29)))
+        # apodapi.herokuapp.com/api/?date=2001-07-12
+        url = 'http://apod.heroku.com/api/?date='+year+'-'+month+'-'+day
         page = urllib.request.Request(url)
         response = json.loads(urllib.request.urlopen(page).read().decode('utf-8'))
         image_url = response['url']
