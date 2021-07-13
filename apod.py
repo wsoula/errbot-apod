@@ -13,12 +13,12 @@ class Apod(BotPlugin):
     @botcmd
     def apod(self, msg, args):
         """Astronomy Picture Of the Day"""
-        self.apod_send(msg, random=False)
+        return self.apod_send(msg, random=False)
 
     @botcmd
     def apod_random(self, msg, args):
         """Random Astronomy Picture Of the Day"""
-        self.apod_send(msg, random=True)
+        return self.apod_send(msg, random=True)
 
     def apod_send(self, msg, random):
         """Astronomy Picture Of the Day"""
@@ -42,6 +42,5 @@ class Apod(BotPlugin):
             file.write(image_bytes)
             file.close()
             self.send_stream_request(msg.frm, open('tmp.gif', 'rb'), name='image.gif', stream_type='image/gif')
-            yield response['description']
-        else:
-            yield msg.frm, 'No image for:'+year+'-'+month+'-'+day
+            return response['description']
+        return 'No image for:'+year+'-'+month+'-'+day
