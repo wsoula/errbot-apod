@@ -16,7 +16,7 @@ class Apod(BotPlugin):
         month = str(secrets.choice(range(1, 13)))
         day = str(secrets.choice(range(1, 29)))
         # apodapi.herokuapp.com/api/?date=2001-07-12
-        url = 'http://apod.heroku.com/api/?date='+year+'-'+month+'-'+day
+        url = 'http://apodapi.herokuapp.com/api/?date='+year+'-'+month+'-'+day
         page = urllib.request.Request(url)
         response = json.loads(urllib.request.urlopen(page).read().decode('utf-8'))
         image_url = response['url']
